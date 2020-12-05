@@ -22,7 +22,7 @@ function App() {
 
   const rows = [
     createData("Alexander Hamilton", "Household Contact", "Apple"),
-    ("Philip  Hamilton", "Household Contact", "Apple"),
+    createData("Philip  Hamilton", "Household Contact", "Apple"),
   ];
 
   return (
@@ -53,16 +53,19 @@ function App() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.name}>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.description}</TableCell>
-                  <TableCell>{row.fruit}</TableCell>
-                </TableRow>
-              ))}
+              {rows.map((row, id) => {
+                return (
+                  <TableRow key={id}>
+                    <TableCell component="th">{row.name}</TableCell>
+                    <TableCell>{row.description}</TableCell>
+                    <TableCell>{row.fruit}</TableCell>
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
         </TableContainer>
+        <Button variant="contained" color="primary">Submit</Button>
       </Container>
     </>
   );
