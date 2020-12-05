@@ -42,30 +42,38 @@ function App() {
             Welcome to the Marketplace! Review your household below.
           </Typography>
         </Box>
-
-        <TableContainer component={Paper} m={2}>
-          <Table aria-label="household member details">
-            <TableHead>
-              <TableRow>
-                <TableCell>Full Name</TableCell>
-                <TableCell>Description</TableCell>
-                <TableCell>Fruit</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row, id) => {
-                return (
-                  <TableRow key={id}>
-                    <TableCell component="th">{row.name}</TableCell>
-                    <TableCell>{row.description}</TableCell>
-                    <TableCell>{row.fruit}</TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <Button variant="contained" color="primary">Submit</Button>
+        <Box pt={4}>
+          <TableContainer component={Paper} m={2}>
+            <Table aria-label="household member details">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Full Name</TableCell>
+                  <TableCell>Description</TableCell>
+                  <TableCell>Fruit</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row, id) => {
+                  return (
+                    <TableRow key={id}>
+                      <TableCell component="th">{row.name}</TableCell>
+                      <TableCell>{row.description}</TableCell>
+                      <TableCell>{row.fruit}</TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+        <Box pt={4}>
+          <Button variant="contained" color="primary">
+            Add New Member
+          </Button>
+        </Box>
+        <Box pt={2} pb={2} style={{bottom:0, position:"absolute"}}>
+        <footer><Typography variant="h5">The Marketplace is a work in progress.</Typography></footer>
+        </Box>
       </Container>
     </>
   );
