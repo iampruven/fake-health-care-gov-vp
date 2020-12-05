@@ -23,7 +23,7 @@ function App() {
   const [description, setDescription] = useState("")
   const [fruit, setFruit] = useState("");
   const [editMode, setEditMode] = useState(false);
-  
+
   function createData(name, description, fruit) {
     return { name, description, fruit };
   }
@@ -81,11 +81,11 @@ function App() {
             </Table>
           </TableContainer>
         </Box>
-        <Box pt={4}>
-          <Button variant="contained" color="primary" onClick={()=>setEditMode(true)}>
+        
+          {editMode?<Box pt={4}><Button style={{marginRight:"10px"}} variant="contained" color="primary">Save</Button><Button variant="contained" color="primary">Cancel</Button></Box>:<Box pt={4}><Button variant="contained" color="primary" onClick={()=>setEditMode(true)}>
             Add New Member
-          </Button>
-        </Box>
+          </Button></Box>}
+        
         <Box pt={2} pb={2} style={{bottom:0, position:"absolute"}}>
         <footer><Typography variant="h5">The Marketplace is a work in progress.</Typography></footer>
         </Box>
