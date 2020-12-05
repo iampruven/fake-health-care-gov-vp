@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Container,
+  TextField,
   Toolbar,
   Typography,
 } from "@material-ui/core";
@@ -13,9 +14,16 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { useState } from "react";
 import "./App.css";
 
 function App() {
+
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("")
+  const [fruit, setFruit] = useState("");
+  const [editMode, setEditMode] = useState(false);
+  
   function createData(name, description, fruit) {
     return { name, description, fruit };
   }
@@ -24,6 +32,7 @@ function App() {
     createData("Alexander Hamilton", "Household Contact", "Apple"),
     createData("Philip  Hamilton", "Household Contact", "Apple"),
   ];
+
 
   return (
     <>
@@ -62,12 +71,18 @@ function App() {
                     </TableRow>
                   );
                 })}
+                {editMode && 
+                    <TableRow>
+                      <TableCell component="th"><TextField id="outlined-basic" label="Full Name" variant="outlined" onChange={(ev)=>setName(ev.target.value)}/></TableCell>
+                      <TableCell><TextField id="outlined-basic" label="Description" variant="outlined" onChange={(ev)=>setDescription(ev.target.value)}/></TableCell>
+                      <TableCell><TextField id="outlined-basic" label="Fruit" variant="outlined" onChange={(ev)=>setFruit(ev.target.value)} /></TableCell>
+                    </TableRow>}
               </TableBody>
             </Table>
           </TableContainer>
         </Box>
         <Box pt={4}>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={()=>setEditMode(true)}>
             Add New Member
           </Button>
         </Box>
