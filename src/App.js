@@ -23,15 +23,29 @@ function App() {
   const [description, setDescription] = useState("");
   const [fruit, setFruit] = useState("");
   const [editMode, setEditMode] = useState(false);
+  const [rows, setRows] = useState([{name:"Alexander Hamilton", description:"Household Contact", fruit: "Apple"}])
+  // function createData(name, description, fruit) {
+  //   return { name, description, fruit };
+  // }
 
-  function createData(name, description, fruit) {
-    return { name, description, fruit };
+  
+  // const rows = [
+  //   createData("Alexander Hamilton", "Household Contact", "Apple"),
+  //   createData("Philip  Hamilton", "Household Contact", "Apple"),
+  // ];
+
+  function newUserData(e){
+    e.preventDefault();
+    let copiedRow = rows;
+    let newRow = [...copiedRow, {name,description,fruit}]
+    return newRow;
   }
 
-  const rows = [
-    createData("Alexander Hamilton", "Household Contact", "Apple"),
-    createData("Philip  Hamilton", "Household Contact", "Apple"),
-  ];
+  function updateRow(e){
+      setRows(newUserData(e))
+      setEditMode(false);
+  }
+
 
   return (
     <>
@@ -111,6 +125,7 @@ function App() {
               style={{ marginRight: "10px" }}
               variant="contained"
               color="primary"
+              onClick={(e)=>updateRow(e)}
             >
               Save
             </Button>
