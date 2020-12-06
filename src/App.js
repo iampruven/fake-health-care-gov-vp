@@ -47,6 +47,7 @@ function App() {
   }
 
 
+
   return (
     <>
       <AppBar position="static">
@@ -129,7 +130,7 @@ function App() {
             >
               Save
             </Button>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={()=>setEditMode(false)}>
               Cancel
             </Button>
           </Box>
