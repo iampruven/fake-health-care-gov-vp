@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Container,
+  Link,
   TextField,
   Toolbar,
   Typography,
@@ -18,9 +19,8 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-
   const [name, setName] = useState("");
-  const [description, setDescription] = useState("")
+  const [description, setDescription] = useState("");
   const [fruit, setFruit] = useState("");
   const [editMode, setEditMode] = useState(false);
 
@@ -33,7 +33,6 @@ function App() {
     createData("Philip  Hamilton", "Household Contact", "Apple"),
   ];
 
-
   return (
     <>
       <AppBar position="static">
@@ -41,7 +40,9 @@ function App() {
           <Typography variant="h5" style={{ flexGrow: 1 }}>
             The Marketplace
           </Typography>
-          <Button color="inherit">Logout</Button>
+          <Link variant="h5" color="inherit" href="#">
+            Logout
+          </Link>
         </Toolbar>
       </AppBar>
       <Container maxWidth="md">
@@ -71,23 +72,70 @@ function App() {
                     </TableRow>
                   );
                 })}
-                {editMode && 
-                    <TableRow>
-                      <TableCell component="th"><TextField id="outlined-basic" label="Full Name" variant="outlined" onChange={(ev)=>setName(ev.target.value)}/></TableCell>
-                      <TableCell><TextField id="outlined-basic" label="Description" variant="outlined" onChange={(ev)=>setDescription(ev.target.value)}/></TableCell>
-                      <TableCell><TextField id="outlined-basic" label="Fruit" variant="outlined" onChange={(ev)=>setFruit(ev.target.value)} /></TableCell>
-                    </TableRow>}
+                {editMode && (
+                  <TableRow>
+                    <TableCell component="th">
+                      <TextField
+                        id="outlined-basic"
+                        label="Full Name"
+                        variant="outlined"
+                        onChange={(ev) => setName(ev.target.value)}
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <TextField
+                        id="outlined-basic"
+                        label="Description"
+                        variant="outlined"
+                        onChange={(ev) => setDescription(ev.target.value)}
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <TextField
+                        id="outlined-basic"
+                        label="Fruit"
+                        variant="outlined"
+                        onChange={(ev) => setFruit(ev.target.value)}
+                      />
+                    </TableCell>
+                  </TableRow>
+                )}
               </TableBody>
             </Table>
           </TableContainer>
         </Box>
-        
-          {editMode?<Box pt={4}><Button style={{marginRight:"10px"}} variant="contained" color="primary">Save</Button><Button variant="contained" color="primary">Cancel</Button></Box>:<Box pt={4}><Button variant="contained" color="primary" onClick={()=>setEditMode(true)}>
-            Add New Member
-          </Button></Box>}
-        
-        <Box pt={2} pb={2} style={{bottom:0, position:"absolute"}}>
-        <footer><Typography variant="h5">The Marketplace is a work in progress.</Typography></footer>
+
+        {editMode ? (
+          <Box pt={4}>
+            <Button
+              style={{ marginRight: "10px" }}
+              variant="contained"
+              color="primary"
+            >
+              Save
+            </Button>
+            <Button variant="contained" color="primary">
+              Cancel
+            </Button>
+          </Box>
+        ) : (
+          <Box pt={4}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => setEditMode(true)}
+            >
+              Add New Member
+            </Button>
+          </Box>
+        )}
+
+        <Box pt={2} pb={2} style={{ bottom: 0, position: "absolute" }}>
+          <footer>
+            <Typography variant="h5">
+              The Marketplace is a work in progress.
+            </Typography>
+          </footer>
         </Box>
       </Container>
     </>
