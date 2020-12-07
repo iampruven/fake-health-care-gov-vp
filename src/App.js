@@ -19,6 +19,7 @@ import Paper from "@material-ui/core/Paper";
 import { useState } from "react";
 import "./App.css";
 
+
 function App() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -188,15 +189,14 @@ function App() {
             </Button>
           </Box>
         )}
-
-        <Box pt={2} pb={2} style={{ bottom: 0, position: "absolute" }}>
+      </Container>
+      <Box bgcolor="#D3D3D3"  p= {2} mt="auto">
           <footer>
             <Typography variant="h5">
               The Marketplace is a work in progress.
             </Typography>
           </footer>
         </Box>
-      </Container>
     </>
   );
 }
