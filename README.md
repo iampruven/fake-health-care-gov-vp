@@ -30,4 +30,3 @@ https://fake-health-care-gov-vp.vercel.app
 ### Get Started:
 - yarn install
 - yarn start
-- yarn add @material-ui/core
