@@ -4,6 +4,7 @@ import {
   Button,
   Container,
   Link,
+  useMediaQuery,
   TextField,
   Toolbar,
   Typography,
@@ -23,30 +24,27 @@ function App() {
   const [description, setDescription] = useState("");
   const [fruit, setFruit] = useState("");
   const [editMode, setEditMode] = useState(false);
-  const [rows, setRows] = useState([{name:"Alexander Hamilton", description:"Household Contact", fruit: "Apple"}])
-  // function createData(name, description, fruit) {
-  //   return { name, description, fruit };
-  // }
+  const [rows, setRows] = useState([
+    {
+      name: "Alexander Hamilton",
+      description: "Household Contact",
+      fruit: "Apple",
+    },
+  ]);
 
-  
-  // const rows = [
-  //   createData("Alexander Hamilton", "Household Contact", "Apple"),
-  //   createData("Philip  Hamilton", "Household Contact", "Apple"),
-  // ];
-
-  function newUserData(e){
+  const matches = useMediaQuery("(max-width:600px)");
+  console.log(matches);
+  function newUserData(e) {
     e.preventDefault();
     let copiedRow = rows;
-    let newRow = [...copiedRow, {name,description,fruit}]
+    let newRow = [...copiedRow, { name, description, fruit }];
     return newRow;
   }
 
-  function updateRow(e){
-      setRows(newUserData(e))
-      setEditMode(false);
+  function updateRow(e) {
+    setRows(newUserData(e));
+    setEditMode(false);
   }
-
-
 
   return (
     <>
@@ -89,30 +87,66 @@ function App() {
                 })}
                 {editMode && (
                   <TableRow>
-                    <TableCell component="th">
+                    <TableCell component="th" colSpan={matches ? 3 : 1}>
                       <TextField
+                        style={{ margin: "5px" }}
+                        fullWidth={matches}
                         id="outlined-basic"
                         label="Full Name"
                         variant="outlined"
+                        autoComplete="off"
+                        required
                         onChange={(ev) => setName(ev.target.value)}
                       />
+                      {matches && (
+                        <TextField
+                          style={{ margin: "5px" }}
+                          fullWidth={matches}
+                          autoComplete="off"
+                          id="outlined-basic"
+                          label="Description"
+                          variant="outlined"
+                          required
+                          onChange={(ev) => setDescription(ev.target.value)}
+                        />
+                      )}
+                      {matches && (
+                        <TextField
+                          style={{ margin: "5px" }}
+                          fullWidth={matches}
+                          autoComplete="off"
+                          id="outlined-basic"
+                          label="Fruit"
+                          variant="outlined"
+                          required
+                          onChange={(ev) => setFruit(ev.target.value)}
+                        />
+                      )}
                     </TableCell>
-                    <TableCell>
-                      <TextField
-                        id="outlined-basic"
-                        label="Description"
-                        variant="outlined"
-                        onChange={(ev) => setDescription(ev.target.value)}
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <TextField
-                        id="outlined-basic"
-                        label="Fruit"
-                        variant="outlined"
-                        onChange={(ev) => setFruit(ev.target.value)}
-                      />
-                    </TableCell>
+                    {!matches && (
+                      <TableCell>
+                        <TextField
+                          autoComplete="off"
+                          id="outlined-basic"
+                          label="Description"
+                          variant="outlined"
+                          required
+                          onChange={(ev) => setDescription(ev.target.value)}
+                        />
+                      </TableCell>
+                    )}
+                    {!matches && (
+                      <TableCell>
+                        <TextField
+                          autoComplete="off"
+                          id="outlined-basic"
+                          label="Fruit"
+                          variant="outlined"
+                          required
+                          onChange={(ev) => setFruit(ev.target.value)}
+                        />
+                      </TableCell>
+                    )}
                   </TableRow>
                 )}
               </TableBody>
@@ -126,11 +160,20 @@ function App() {
               style={{ marginRight: "10px" }}
               variant="contained"
               color="primary"
-              onClick={(e)=>updateRow(e)}
+              onClick={(e) => updateRow(e)}
+              disabled={
+                name.length === 0 ||
+                description.length === 0 ||
+                fruit.length === 0
+              }
             >
               Save
             </Button>
-            <Button variant="contained" color="primary" onClick={()=>setEditMode(false)}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => setEditMode(false)}
+            >
               Cancel
             </Button>
           </Box>
