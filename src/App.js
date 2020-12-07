@@ -156,7 +156,7 @@ function App() {
         </Box>
 
         {editMode ? (
-          <Box pt={4}>
+          <Box pt={4} pb={4}>
             <Button
               style={{ marginRight: "10px" }}
               variant="contained"
@@ -179,7 +179,7 @@ function App() {
             </Button>
           </Box>
         ) : (
-          <Box pt={4}>
+          <Box pt={4} pb={4}>
             <Button
               variant="contained"
               color="primary"
